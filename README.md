@@ -1,6 +1,6 @@
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
 
-## Used data
+## Used input
 ```js
 const user = {
   id: '00000000-0000-0000-0000-000000000000',
@@ -10,6 +10,18 @@ const user = {
     line1: 'asdasd',
     line2: 'asdasdasd',
     line3: 'asdasd',
+  },
+}
+```
+
+## Expected output
+```js
+const validUser = {
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Eduardo',
+  address: {
+    line1: 'asdasd',
+    line2: 'asdasdasd',
   },
 }
 ```
