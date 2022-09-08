@@ -2,6 +2,9 @@
 import { isRight } from 'fp-ts/Either'
 import { User as UserIO } from './iots'
 
+// zod imports
+import { User as UserZOD } from './zod'
+
 // class-validator imports
 import 'reflect-metadata'
 import { plainToClass } from 'class-transformer'
@@ -28,6 +31,10 @@ async function main () {
   } else {
     console.log('[io-ts] not valid:', userIo.left[0].context)
   }
+
+  // Zod
+  const userZod = UserZOD.parse(user)
+  console.log('[zod] valid:', userZod)
 
   // Class-Validator non-whitelisted
   const userCv = plainToClass(UserCV, user)

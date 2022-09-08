@@ -27,8 +27,13 @@ const validUser = {
 ```
 
 ## Results
-```
+```js
 [io-ts] valid: {
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Eduardo',
+  address: { line1: 'asdasd', line2: 'asdasdasd' }
+}
+[zod] valid: {
   id: '00000000-0000-0000-0000-000000000000',
   name: 'Eduardo',
   address: { line1: 'asdasd', line2: 'asdasdasd' }
@@ -49,12 +54,14 @@ const validUser = {
 ## Benchmarks
 ```
 io-ts:
-  1 343 252 ops/s, ±0.11%   | fastest
+  1 052 443 ops/s, ±4.06%   | fastest
+
+zod:
+  750 607 ops/s, ±0.11%     | 28.68% slower
 
 class-validator wl:
-  101 559 ops/s, ±1.97%     | slowest, 92.44% slower
+  95 683 ops/s, ±4.40%      | slowest, 90.91% slower
 
 class-validator non-wl:
-  113 699 ops/s, ±0.23%     | 91.54% slower
-
+  112 976 ops/s, ±0.17%     | 89.27% slower
 ```

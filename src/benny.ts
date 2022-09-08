@@ -5,6 +5,9 @@ import b from 'benny'
 import { isRight } from 'fp-ts/Either'
 import { User as UserIO } from './iots'
 
+// zod imports
+import { User as UserZOD } from './zod'
+
 // class-validator imports
 import 'reflect-metadata'
 import { plainToClass } from 'class-transformer'
@@ -32,6 +35,15 @@ b.suite(
       return userIo.right
     } else {
       return userIo.left[0].context
+    }
+  }),
+
+  b.add('zod', () => {
+    try {
+      const userZod = UserZOD.parse(user)
+      return userZod
+    } catch (err) {
+      return err
     }
   }),
 
