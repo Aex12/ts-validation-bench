@@ -33,8 +33,12 @@ async function main () {
   }
 
   // Zod
-  const userZod = UserZOD.parse(user)
-  console.log('[zod] valid:', userZod)
+  try {
+    const userZod = UserZOD.parse(user)
+    console.log('[zod] valid:', userZod)
+  } catch (err) {
+    console.log('[zod] not valid', err)
+  }
 
   // Class-Validator non-whitelisted
   const userCv = plainToClass(UserCV, user)
