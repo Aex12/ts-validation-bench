@@ -35,9 +35,19 @@ b.suite(
     }
   }),
 
-  b.add('class-validator', async () => {
+  b.add('class-validator wl', async () => {
     const userCv = plainToClass(UserCV, user)
     const errors = await validate(userCv, { whitelist: true })
+    if (errors.length === 0) {
+      return userCv
+    } else {
+      return errors
+    }
+  }),
+
+  b.add('class-validator non-wl', async () => {
+    const userCv = plainToClass(UserCV, user)
+    const errors = await validate(userCv)
     if (errors.length === 0) {
       return userCv
     } else {

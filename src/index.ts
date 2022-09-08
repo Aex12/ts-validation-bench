@@ -29,13 +29,22 @@ async function main () {
     console.log('[io-ts] not valid:', userIo.left[0].context)
   }
 
-  // Class-Validator
+  // Class-Validator non-whitelisted
   const userCv = plainToClass(UserCV, user)
-  const errors = await validate(userCv, { whitelist: true })
+  const errors = await validate(userCv)
   if (errors.length === 0) {
-    console.log('[class-validator] valid', userCv)
+    console.log('[class-validator non-wl] valid', userCv)
   } else {
-    console.log('[class-validator] not valid', errors)
+    console.log('[class-validator non-wl] not valid', errors)
+  }
+
+  // Class-Validator non-whitelisted
+  const userCvWl = plainToClass(UserCV, user)
+  const errorsWl = await validate(userCvWl, { whitelist: true })
+  if (errors.length === 0) {
+    console.log('[class-validator wl] valid', userCvWl)
+  } else {
+    console.log('[class-validator wl] not valid', errorsWl)
   }
 }
 

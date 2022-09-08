@@ -1,24 +1,48 @@
-# 🔷🌱 TypeScript Basic Skeleton
+[![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](http://standardjs.com)
 
-Template intended to serve as a starting point if you want to bootstrap a project in TypeScript.
+## Used data
+```js
+const user = {
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Eduardo',
+  age: 23,
+  address: {
+    line1: 'asdasd',
+    line2: 'asdasdasd',
+    line3: 'asdasd',
+  },
+}
+```
 
-The purpose of this repository is to leave it with the bare minimum dependencies and tools needed to run TypeScript snippets or start you project without any opinionated decision already made.
+## Results
+```
+[io-ts] valid: {
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Eduardo',
+  address: { line1: 'asdasd', line2: 'asdasdasd' }
+}
+[class-validator non-wl] valid User {
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Eduardo',
+  age: 23,
+  address: { line1: 'asdasd', line2: 'asdasdasd', line3: 'asdasd' }
+}
+[class-validator wl] valid User {
+  id: '00000000-0000-0000-0000-000000000000',
+  name: 'Eduardo',
+  address: {}
+}
+```
 
-## Features
+## Benchmarks
+```
+io-ts:
+  1 343 252 ops/s, ±0.11%   | fastest
 
-- [TypeScript](https://www.typescriptlang.org/) (v4)
-- [Prettier](https://prettier.io/)
-- [ESLint](https://eslint.org/) with:
-  - [Simple Import Sort](https://github.com/lydell/eslint-plugin-simple-import-sort/)
-  - [Import plugin](https://github.com/benmosher/eslint-plugin-import/)
-  - And a few other ES2015+ related rules
-- [Jest](https://jestjs.io) with [DOM Testing Library](https://testing-library.com/docs/dom-testing-library/intro)
-- [GitHub Action workflows](https://github.com/features/actions) set up to run tests and linting on push
-- [SWC](https://swc.rs/): Execute your tests in less than 200ms
+class-validator wl:
+  101 559 ops/s, ±1.97%     | slowest, 92.44% slower
 
-## Running the app
+class-validator non-wl:
+  113 699 ops/s, ±0.23%     | 91.54% slower
 
-- Install the dependencies: `npm install`
-- Execute the tests: `npm run test`
-- Check linter errors: `npm run lint`
-- Fix linter errors: `npm run lint:fix`
+```
