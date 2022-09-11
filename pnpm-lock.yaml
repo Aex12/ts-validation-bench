@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@sinclair/typebox': ^0.24.39
   '@swc/core': ^1.2.249
   '@swc/jest': ^0.2.22
   '@types/jest': ^29.0.0
@@ -28,6 +29,7 @@ specifiers:
   zod: ^3.19.0
 
 dependencies:
+  '@sinclair/typebox': 0.24.39
   benny: 3.7.1
   class-transformer: 0.5.1
   class-validator: 0.13.2
@@ -635,7 +637,7 @@ packages:
     resolution: {integrity: sha512-3Ab5HgYIIAnS0HjqJHQYZS+zXc4tUmTmBH3z83ajI6afXp8X3ZtdLX+nXx+I7LNkJD7uN9LAVhgnjDgZa2z0kA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@sinclair/typebox': 0.24.38
+      '@sinclair/typebox': 0.24.39
     dev: true
 
   /@jest/source-map/29.0.0:
@@ -772,9 +774,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@sinclair/typebox/0.24.38:
-    resolution: {integrity: sha512-IbYB6vdhLFmzGEyXXEdFAJKyq7S4/RsivkgxNzs/LzwYuUJHmeNQ0cHkjG/Yqm6VgUzzZDLMZAf0XgeeaZAocA==}
-    dev: true
+  /@sinclair/typebox/0.24.39:
+    resolution: {integrity: sha512-GqtkxoAjhTzoMwFg/JYRl+1+miOoyvp6mkLpbMSd2fIQak2KvY00ndlXxxkDBpuCPYkorZeEZf0LEQn9V9NRVQ==}
 
   /@sinonjs/commons/1.8.3:
     resolution: {integrity: sha512-xkNcLAn/wZaX14RPlwizcKicDk9G3F8m2nU3L7Ukm5zBgTwiT0wsoFAHx9Jq56fJA1z/7uKGtCRu16sOUCLIHQ==}

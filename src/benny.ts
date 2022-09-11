@@ -1,72 +1,47 @@
 /* benchmark.js */
 import b from 'benny'
-
-// io-ts imports
-import { isRight } from 'fp-ts/Either'
-import { User as UserIO } from './iots'
-
-// zod imports
-import { User as UserZOD } from './zod'
-
-// class-validator imports
-import 'reflect-metadata'
-import { plainToClass } from 'class-transformer'
-import { validate } from 'class-validator'
-import { User as UserCV } from './class-validator'
-
-const user = {
-  id: '00000000-0000-0000-0000-000000000000',
-  name: 'Eduardo',
-  age: 23,
-  address: {
-    line1: 'asdasd',
-    line2: 'asdasdasd',
-    line3: 'asdasd',
-  },
-}
+import {
+  validUser,
+  invalidUser,
+  extrapropsUser,
+  parseIo,
+  parseZod,
+  checkTypebox,
+  castTypebox,
+} from './index'
 
 b.suite(
-  'validation libraries',
+  'validUser',
+  b.add('io-ts', () => parseIo(validUser)),
+  b.add('zod', () => parseZod(validUser)),
+  b.add('typebox check', () => checkTypebox(validUser)),
+  b.add('typebox cast', () => castTypebox(validUser)),
+  // b.add('class-validator wl', () => classValidatorWl(validUser)),
+  // b.add('class-validator non-wl', () => classValidatorNonwl(validUser)),
+  b.cycle(),
+  b.complete(),
+)
 
-  b.add('io-ts', () => {
-    const userIo = UserIO.decode(user)
+b.suite(
+  'extrapropsUser',
+  b.add('io-ts', () => parseIo(extrapropsUser)),
+  b.add('zod', () => parseZod(extrapropsUser)),
+  b.add('typebox check', () => checkTypebox(extrapropsUser)),
+  b.add('typebox cast', () => castTypebox(extrapropsUser)),
+  // b.add('class-validator wl', () => classValidatorWl(extrapropsUser)),
+  // b.add('class-validator non-wl', () => classValidatorNonwl(extrapropsUser)),
+  b.cycle(),
+  b.complete(),
+)
 
-    if (isRight(userIo)) {
-      return userIo.right
-    } else {
-      return userIo.left[0].context
-    }
-  }),
-
-  b.add('zod', () => {
-    try {
-      const userZod = UserZOD.parse(user)
-      return userZod
-    } catch (err) {
-      return err
-    }
-  }),
-
-  b.add('class-validator wl', async () => {
-    const userCv = plainToClass(UserCV, user)
-    const errors = await validate(userCv, { whitelist: true })
-    if (errors.length === 0) {
-      return userCv
-    } else {
-      return errors
-    }
-  }),
-
-  b.add('class-validator non-wl', async () => {
-    const userCv = plainToClass(UserCV, user)
-    const errors = await validate(userCv)
-    if (errors.length === 0) {
-      return userCv
-    } else {
-      return errors
-    }
-  }),
-
+b.suite(
+  'invalidUser',
+  b.add('io-ts', () => parseIo(invalidUser)),
+  b.add('zod', () => parseZod(invalidUser)),
+  b.add('typebox check', () => checkTypebox(invalidUser)),
+  b.add('typebox cast', () => castTypebox(invalidUser)),
+  // b.add('class-validator wl', () => classValidatorWl(invalidUser)),
+  // b.add('class-validator non-wl', () => classValidatorNonwl(invalidUser)),
   b.cycle(),
   b.complete(),
 )
