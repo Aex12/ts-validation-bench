@@ -221,9 +221,8 @@ invalidUser:
 ]
 ```
 ## Benchmarks
+### validUser
 ```
-"validUser" suite
-
   io-ts:
     1 483 937 ops/s, ±1.69%   | 72.24% slower
 
@@ -238,10 +237,9 @@ invalidUser:
 
   Fastest: typebox check
   Slowest: zod
-
-
-"extrapropsUser" suite
-
+```
+### extrapropsUser
+```
   io-ts:
     1 263 169 ops/s, ±0.06%   | fastest
 
@@ -256,10 +254,9 @@ invalidUser:
 
   Fastest: io-ts
   Slowest: typebox check
-
-
-"invalidUser" suite:
-
+```
+### invalidUser
+```
   io-ts:
     1 698 578 ops/s, ±0.08%   | fastest
 
@@ -274,5 +271,4 @@ invalidUser:
 
   Fastest: io-ts
   Slowest: typebox cast
-
 ```
